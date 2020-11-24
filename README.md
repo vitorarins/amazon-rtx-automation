@@ -1,18 +1,18 @@
 # Amazon Purchase Script 
 
-Example: script to buy the things on Amazon 
+**Use at your own risk. Read thoroughly**
 
-forked from yosh1/amazon-automation & druyang/amazon-PS5-automation
+Example: script to buy a PS5 on Amazon (Please do not use this script for scalping, this is simply a free open source solution for those that want a console but are unable to get one due to market competitiveness)
 
-Use at your own risk
+
+
+forked from yosh1/amazon-automation
 
 Requirements: 
 --- 
-
 * Python 3 
-* Selenium 
+* Python modules in `requirements.txt` 
 * [WebDriver for Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads) in same directory 
-* dotenv
 
 Recommended to be run on Linux or Max. Would be a good script to run on a raspberry pi or server
 
@@ -21,8 +21,8 @@ Notes of caution:
 
 Things to check for on Amazon/potential edge cases: 
 
- * Amazon 2FA 
- * Default address / payment method - fixed with 1-click buy - to do:  need to verify logged in and authenticated
+ * Amazon 2FA (an option is to disable but this will **expose your account to security problems**)
+ * Currently uses 1 click buy. Confirm your default address + payments is correct before running this script
  * Captchas for hitting Amazon's server a lot
 
 ---
@@ -36,6 +36,7 @@ $ cp .env.sample .env
 ## Run
 
 ```
+$ pip install -r requirements.txt 
 $ python3 main.py
 ```
 

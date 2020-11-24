@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.9-alpine
 
 ARG project_dir=/python/app/
 ADD . ${project_dir}
