@@ -1,10 +1,12 @@
 # Amazon Purchase Script 
 
-Example: script to buy the things on Amazon 
+**Use at your own risk. Read thoroughly**
 
-forked from yosh1/amazon-automation & druyang/amazon-PS5-automation
+Example: script to buy a PS5 on Amazon (Please do not use this script for scalping, this is simply a free open source solution for those that want a console but are unable to get one due to market competitiveness)
 
-Use at your own risk
+
+
+forked from yosh1/amazon-automation
 
 Requirements: 
 --- 
