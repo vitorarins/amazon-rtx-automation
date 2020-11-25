@@ -13,7 +13,7 @@ from selenium.webdriver import DesiredCapabilities
 DELAY = 32
 
 load_dotenv(verbose=True)
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = '.env'
 load_dotenv(dotenv_path)
 
 def launch():
@@ -25,21 +25,24 @@ def launch():
     opt.add_argument('--disable-dev-shm-usage')
     opt.add_argument("--allow-running-insecure-content")
     opt.add_argument("--no-sandbox")
+    opt.add_argument("--headless")
     opt.add_argument("--remote-debugging-port=921")
     opt.add_argument("--disable-webgl")
     opt.add_argument("--disable-popup-blocking")
     opt.add_argument("--user-data-dir=selenium") # added this option to use cookies, you may need to perform initial login within Selenium
-    browser = webdriver.Chrome('./chromedriver' ,options=opt,desired_capabilities=d)
+    browser = webdriver.Chrome('chromedriver' ,options=opt,desired_capabilities=d)
     browser.implicitly_wait(10)
     browser.set_page_load_timeout(5)
     logger.info('Started Chrome')
     return browser
 
 if __name__ == '__main__':
+    url = os.environ.get('ITEM_URL', None)
     # Launch selenium
     try:
         b = launch()
-        b.get(amazonBot.ITEM_URL)
+        logger.info('Now opening: {}'.format(url))
+        b.get(url)
     except Exception as inst:
         logger.error('Failed to open browser: {}'.format(format(inst)))
         exit()
