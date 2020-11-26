@@ -10,8 +10,6 @@ from logger import logger
 from dotenv import load_dotenv
 from selenium.webdriver import DesiredCapabilities
 
-DELAY = 32
-
 load_dotenv(verbose=True)
 dotenv_path = '.env'
 load_dotenv(dotenv_path)
@@ -37,6 +35,13 @@ def launch():
     return browser
 
 if __name__ == '__main__':
+    email = os.environ.get('LOGIN_MAIL', None)
+    password = os.environ.get('LOGIN_PASSWORD', None)
+
+    ACCEPT_SHOP = 'Amazon.com'
+    LIMIT_VALUE = 50    # Maximum USD for the purchase
+
+    DELAY = 32
     url = os.environ.get('ITEM_URL', None)
     # Launch selenium
     try:
@@ -49,7 +54,7 @@ if __name__ == '__main__':
 
     # Log in
     try:
-        amazonBot.login(b)
+        amazonBot.login(b, email, password)
     except Exception as e:
         logger.error('Error Could not login: {}'.format(e))
         exit()
@@ -60,8 +65,7 @@ if __name__ == '__main__':
         while(not done):
             try:
                 # Navigate to the item and buy if checks pass
-                amazonBot.purchase_item(b)
-                done = True
+                done = amazonBot.purchase_item(b, url, LIMIT_VALUE, ACCEPT_SHOP)
                 logger.info("Successfully purchased item")
             except BaseException:
                 pass
